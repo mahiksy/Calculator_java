@@ -1,6 +1,6 @@
-let numberButtons = document.querySelectorAll(".numbers");
-let operatorButtons = document.querySelectorAll(".operators");
-let resultText = document.querySelector("p");
+const numberButtons = document.querySelectorAll(".numbers");
+const operatorButtons = document.querySelectorAll(".operators");
+const resultText = document.querySelector("p");
 
 const calculator = {
     firstNum: "",
