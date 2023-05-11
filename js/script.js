@@ -108,26 +108,32 @@ function setNumbers(num){
 }
 
 function setOperator(op){
-    if (calculator.firstNum == "" && op == " - "){
+    if (calculator.firstNum === "" && op === " - "){
         calculator.firstNum += "-";
         updateResult(calculator.firstNum);
+        return;
     }
-    if(calculator.firstNum != ""){
-        if(calculator.checkOperate){
-            operation();
-            calculator.operator = op;
-            calculator.checkNumTwo = true;
-            calculator.printResult = false;
-            calculator.checkOperate = true;
-        }
-        else{
+
+    else if(calculator.secondNum === "" && op === " - " && calculator.checkOperate){
+        calculator.secondNum += "-";
+        updateResult(calculator.secondNum);
+        return;
+    }
+
+    if(calculator.firstNum != "" && calculator.checkOperate){
+        operation();
+        calculator.operator = op;
+        calculator.checkNumTwo = true;
+        calculator.printResult = false;
+        calculator.checkOperate = true;
+    }
+    else{
             calculator.operator = op;
             calculator.checkNumTwo = true;
             calculator.checkOperate = true;
             calculator.checkForFloat = false;
             resultText.textContent = "0";
             calculator.printResult = false;
-        }
     }
 }
 
