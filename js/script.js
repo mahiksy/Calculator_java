@@ -63,47 +63,42 @@ function operation(){
     updateObject(calculator);
 }
 
+function updateNumber(num){
+    if(calculator.checkNumTwo){
+        calculator.secondNum = num;
+    }
+    else{
+        calculator.firstNum = num;
+    }
+}
+
 //set numbers to first or second number in the object
 function setNumbers(num){
+    let number;
+    if(calculator.checkNumTwo){
+        number  = calculator.secondNum;
+    }
+    else{
+        number= calculator.firstNum;
+    }
+    if(number.length == 19){
+        return;
+    }
     if(!calculator.printResult){
-        if(calculator.checkNumTwo){
-            if(calculator.secondNum.length < 20){
-                if(num === "."){
-                    if(!calculator.checkForFloat){
-                        if(calculator.secondNum == ""){
-                            calculator.secondNum += "0.";
-                        }
-                        else{
-                            calculator.secondNum += ".";
-                        }
-                        calculator.checkForFloat = true;
-                    }
-                }
-                else{
-                    calculator.secondNum += num;
-                }
-                updateResult(calculator.secondNum);
+        if(!calculator.checkForFloat && num === "."){      
+            if(number == ""){
+                number += "0.";
             }
+            else{
+                number += ".";
+            }
+            calculator.checkForFloat = true;
         }
         else{
-            if(calculator.firstNum.length < 20){
-                if(num === "."){
-                    if(!calculator.checkForFloat){
-                        if(calculator.firstNum == ""){
-                            calculator.firstNum += "0.";
-                        }
-                        else{
-                            calculator.firstNum += ".";
-                        } 
-                        calculator.checkForFloat = true;
-                    }
-                }
-                else{
-                    calculator.firstNum += num;
-                }
-                updateResult(calculator.firstNum);
-            }
+            number += num;
         }
+        updateNumber(number);
+        updateResult(number);
     }
 }
 
