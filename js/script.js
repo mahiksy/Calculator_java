@@ -162,31 +162,32 @@ function backSpace(){
 }
 
 //add Event listneres to number buttons
-for(let i = 10; i >= 0; i--){
-    numberButtons[i].addEventListener('click',()=>{
-        if(i==10){
+numberButtons.forEach(number=>{
+    number.addEventListener('click',()=>{
+        if(number.textContent == " . "){
             setNumbers(".")
         }
         else{
-            setNumbers(9-i);
+            let int = parseInt(number.textContent);
+            setNumbers(int);
         }
-    })
-};
+    });
+})
 
 //add Event listeners to operator buttons
-for(let i = 0; i < 7; i++){
-    operatorButtons[i].addEventListener("click", ()=>{
-        if(i == 0){
+operatorButtons.forEach(button =>{
+    button.addEventListener("click", ()=>{
+        if(button.textContent == " C "){
             clear();
         }
-        else if(i == 1){
+        else if(button.textContent == " B "){
             backSpace();
         }
-        else if(i == 6){
+        else if(button.textContent == " = "){
             operation();
         }
         else{
-            setOperator(operatorButtons[i].textContent);
+            setOperator(button.textContent);
         }
-    })
-}
+    });
+})
