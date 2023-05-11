@@ -63,6 +63,15 @@ function operation(){
     updateObject(calculator);
 }
 
+function getNumber(){
+    if(calculator.checkNumTwo){
+        return calculator.secondNum;
+    }
+    else{
+        return calculator.firstNum;
+    }
+}
+
 function updateNumber(num){
     if(calculator.checkNumTwo){
         calculator.secondNum = num;
@@ -74,13 +83,7 @@ function updateNumber(num){
 
 //set numbers to first or second number in the object
 function setNumbers(num){
-    let number;
-    if(calculator.checkNumTwo){
-        number  = calculator.secondNum;
-    }
-    else{
-        number= calculator.firstNum;
-    }
+    let number = getNumber();
     if(number.length == 19){
         return;
     }
@@ -145,26 +148,17 @@ function clear(){
 }
 
 function backSpace(){
+    let number = getNumber();
     if(!calculator.printResult){
-        if(calculator.checkNumTwo){
-            calculator.secondNum = calculator.secondNum.substring(0,calculator.secondNum.length -1);
-            if(calculator.secondNum.length == 0){
+            number = number.substring(0,number.length -1);
+            if(number.length == 0){
                 updateResult('0');
             }
             else{
-                updateResult(calculator.secondNum);
+                updateResult(number);
             }
         }
-        else{
-            calculator.firstNum = calculator.firstNum.substring(0,calculator.firstNum.length -1);
-            if(calculator.firstNum.length == 0){
-                updateResult('0');
-            }
-            else{
-                updateResult(calculator.firstNum);
-            }
-        }
-    }
+    updateNumber(number);
 }
 
 //add Event listneres to number buttons
