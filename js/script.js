@@ -24,19 +24,7 @@ function operate(num1, num2, op){
                 calculator.result = (parseFloat(num1) + parseFloat(num2));
                 break;
             case " - ":
-                if(calculator.checkOperate){
-                    if(calculator.checkNumTwo && calculator.secondNum == "" ){
-                        calculator.checkNumTwo += "-";
-                        updateResult(calculator.secondNum);
-                    }
-                    if(!calculator.checkNumTwo && calculator.firstNum == ""){
-                        calculator.firstNum += "-";
-                        updateResult(calculator.firstNum);
-                    }
-                }
-                else{
-                    calculator.result = (parseFloat(num1) - parseFloat(num2));
-                }
+                calculator.result = (parseFloat(num1) - parseFloat(num2));
                 break;
             case " * ":
                 calculator.result = (parseFloat(num1) * parseFloat(num2));
@@ -120,6 +108,10 @@ function setNumbers(num){
 }
 
 function setOperator(op){
+    if (calculator.firstNum == "" && op == " - "){
+        calculator.firstNum += "-";
+        updateResult(calculator.firstNum);
+    }
     if(calculator.firstNum != ""){
         if(calculator.checkOperate){
             operation();
